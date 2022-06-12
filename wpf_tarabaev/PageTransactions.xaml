@@ -1,0 +1,64 @@
+﻿<Page x:Class="wpf_tarabaev.PageTransactions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:command="clr-namespace:wpf_tarabaev.Commands"
+      xmlns:core="clr-namespace:wpf_tarabaev.Model"
+      xmlns:rule="clr-namespace:wpf_tarabaev.ValidationRules"
+      xmlns:local="clr-namespace:wpf_tarabaev"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageTransactions">
+
+    <StackPanel Margin="3,3,0,3" Background="{StaticResource BackgroundWindowResource}">
+        <Menu>
+            <MenuItem Header="Действие">
+                <MenuItem Header="Отменить" Command="Undo"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Создать" Command="New"></MenuItem>
+                <MenuItem Header="Редактировать" Command="command:DataCommands.Edit"></MenuItem>
+                <MenuItem Header="Сохранить" Command="Save"></MenuItem>
+                <MenuItem Header="Найти" Command="Find"/>
+                <MenuItem Header="Обновить" Command="Refresh"/>
+                <Separator></Separator>
+                <MenuItem Header="Удалить" Command="command:DataCommands.Delete">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Отчёт"></MenuItem>
+        </Menu>
+        <ToolBar Name="ToolBar1" Margin="3">
+            <Button Name="undo" Command="Undo" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/undo.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="add" Command="New" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/create.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="edit" Command="command:DataCommands.Edit" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/edit.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="find" Command="Find" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/find.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="save" Command="Save" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/save.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="edit_remove" Command="command:DataCommands.Delete" ToolTip="Отменить редактирование/создание" Margin="5,2,5,2">
+                <Image Source="Images/edit_remove.ico" Height="22" Width="38"/>
+            </Button>
+            <Button Name="refresh" Command="Refresh" ToolTip="Обновить данные по сотрудникам" Margin="5,2,5,2">
+                <Image Source="Images/refresh.png" Height="22" Width="38"/>
+            </Button>
+        </ToolBar>
+        <TextBlock Margin="7">Список сделок</TextBlock>
+    </StackPanel>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static command:DataCommands.Delete}" Executed="DeleteCommandBinding_Executed" CanExecute="DeleteCommandBinding_CanExecute"/>
+        <CommandBinding Command="Undo" Executed="UndoCommandBinding_Executed" CanExecute="UndoCommandBinding_CanExecute"/>
+        <CommandBinding Command="New" Executed="NewCommandBinding_Executed" CanExecute="NewCommandBinding_CanExecute"/>
+        <CommandBinding Command="Save" Executed="SaveCommandBinding_Executed" CanExecute="SaveCommandBinding_CanExecute"/>
+        <CommandBinding Command="Find" Executed="FindCommandBinding_Executed" CanExecute="FindCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static command:DataCommands.Edit}" Executed="EditCommandBinding_Executed" CanExecute="EditCommandBinding_CanExecute"/>
+        <CommandBinding Command="Refresh" Executed="RefreshCommandBinding_Executed"/>
+    </Page.CommandBindings>
+</Page>
